@@ -171,7 +171,7 @@ def generate_doxygen_xml(app):
         # Consider suppressing output completely if RTD project silently fails.
         # Refer to https://github.com/svenevs/exhale
         # /blob/fe7644829057af622e467bb529db6c03a830da99/exhale/deploy.py#L99-L111
-        process = Popen(["cat", "/etc/os-release"],
+        process = Popen(["install", "libcurl4-openssl-dev", "libssl-dev"],
                         stdout=PIPE, stderr=PIPE,
                         universal_newlines=True)
         stdout, stderr = process.communicate()
