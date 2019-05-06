@@ -175,8 +175,7 @@ def generate_doxygen_xml(app):
                         stdout=PIPE, stderr=PIPE,
                         universal_newlines=True)
         stdout, stderr = process.communicate()
-        output = '\n'.join([i.decode('utf-8') if is_py3 else i
-                            for i in (stdout, stderr) if i is not None])
+        output = '\n'.join([i for i in (stdout, stderr) if i is not None])
         if process.returncode != 0:
             raise RuntimeError(output)
         else:
