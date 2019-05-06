@@ -166,37 +166,13 @@ def generate_doxygen_xml(app):
     app : object
         The application object representing the Sphinx process.
     """
-    doxygen_args = [
-        "INPUT={}".format(os.path.join(CURR_PATH, os.path.pardir,
-                                       'include', 'LightGBM', 'c_api.h')),
-        "OUTPUT_DIRECTORY={}".format(os.path.join(CURR_PATH, 'doxyoutput')),
-        "GENERATE_HTML=NO",
-        "GENERATE_LATEX=NO",
-        "GENERATE_XML=YES",
-        "XML_OUTPUT=xml",
-        "XML_PROGRAMLISTING=YES",
-        r'ALIASES="rst=\verbatim embed:rst:leading-asterisk"',
-        r'ALIASES+="endrst=\endverbatim"',
-        "ENABLE_PREPROCESSING=YES",
-        "MACRO_EXPANSION=YES",
-        "EXPAND_ONLY_PREDEF=NO",
-        "SKIP_FUNCTION_MACROS=NO",
-        "SORT_BRIEF_DOCS=YES",
-        "WARN_AS_ERROR=YES",
-    ]
-    doxygen_input = '\n'.join(doxygen_args)
-    is_py3 = sys.version[0] == "3"
-    if is_py3:
-        doxygen_input = bytes(doxygen_input, "utf-8")
-    if not os.path.exists(os.path.join(CURR_PATH, 'doxyoutput')):
-        os.makedirs(os.path.join(CURR_PATH, 'doxyoutput'))
     try:
         # Warning! The following code can cause buffer overflows on RTD.
         # Consider suppressing output completely if RTD project silently fails.
         # Refer to https://github.com/svenevs/exhale
         # /blob/fe7644829057af622e467bb529db6c03a830da99/exhale/deploy.py#L99-L111
-        process = Popen(["doxygen", "-"],
-                        stdin=PIPE, stdout=PIPE, stderr=PIPE)
+        process = Popen(["cat" "/etc/*release"],
+                        stdout=PIPE, stderr=PIPE)
         stdout, stderr = process.communicate(doxygen_input)
         output = '\n'.join([i.decode('utf-8') if is_py3 else i
                             for i in (stdout, stderr) if i is not None])
