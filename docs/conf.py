@@ -166,15 +166,23 @@ def generate_doxygen_xml(app):
     app : object
         The application object representing the Sphinx process.
     """
+    commands = """
+    R_VER=3.6.0
+    wget https://cran.r-project.org/src/base/R-3/R-$R_VER.tar.gz
+    tar -xzf R-$R_VER.tar.gz
+    R-$R_VER/configure --enable-R-shlib --prefix=$HOME/R
+    make
+    make install
+    """
     try:
         # Warning! The following code can cause buffer overflows on RTD.
         # Consider suppressing output completely if RTD project silently fails.
         # Refer to https://github.com/svenevs/exhale
         # /blob/fe7644829057af622e467bb529db6c03a830da99/exhale/deploy.py#L99-L111
-        process = Popen(["sudo", "apt-get", "install", "libcurl4-openssl-dev", "libssl-dev"],
-                        stdout=PIPE, stderr=PIPE,
+        process = Popen(['/bin/bash'],
+                        stdin=PIPE, stdout=PIPE, stderr=PIPE,
                         universal_newlines=True)
-        stdout, stderr = process.communicate()
+        stdout, stderr = process.communicate(commands)
         output = '\n'.join([i for i in (stdout, stderr) if i is not None])
         if process.returncode != 0:
             raise RuntimeError(output)
