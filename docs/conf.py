@@ -167,7 +167,8 @@ def generate_doxygen_xml(app):
         The application object representing the Sphinx process.
     """
     commands = """
-    conda list
+    conda activate base
+    conda install gfortran_linux-64
     R_VER=3.6.0
     wget https://cran.r-project.org/src/base/R-3/R-$R_VER.tar.gz
     tar -xzf R-$R_VER.tar.gz
