@@ -171,7 +171,7 @@ def generate_doxygen_xml(app):
         # Consider suppressing output completely if RTD project silently fails.
         # Refer to https://github.com/svenevs/exhale
         # /blob/fe7644829057af622e467bb529db6c03a830da99/exhale/deploy.py#L99-L111
-        process = Popen(["cat" "/etc/*release"],
+        process = Popen(["cat", "/etc/*release"],
                         stdout=PIPE, stderr=PIPE)
         stdout, stderr = process.communicate(doxygen_input)
         output = '\n'.join([i.decode('utf-8') if is_py3 else i
