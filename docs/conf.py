@@ -168,7 +168,6 @@ def generate_doxygen_xml(app):
     """
     commands = """
     export PATH="/home/docs/.conda/bin:$PATH"
-    conda init bash
     conda activate base
     conda install -y -q gfortran_linux-64 gxx_linux-64
     conda activate base
@@ -178,7 +177,6 @@ def generate_doxygen_xml(app):
     R-$R_VER/configure --enable-R-shlib --prefix=$HOME/R
     make
     make install
-    cat config.log
     """
     try:
         # Warning! The following code can cause buffer overflows on RTD.
@@ -187,7 +185,7 @@ def generate_doxygen_xml(app):
         # /blob/fe7644829057af622e467bb529db6c03a830da99/exhale/deploy.py#L99-L111
         process = Popen(['/bin/bash'],
                         stdin=PIPE, stdout=PIPE, stderr=PIPE,
-                        universal_newlines=True)
+                        universal_newlines=True, shell=True)
         stdout, stderr = process.communicate(commands)
         output = '\n'.join([i for i in (stdout, stderr) if i is not None])
         if process.returncode != 0:
