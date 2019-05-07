@@ -169,7 +169,7 @@ def generate_doxygen_xml(app):
     commands = """
     export PATH="/home/docs/.conda/bin:$PATH"
     source activate base
-    conda install -y -q gfortran_linux-64 gxx_linux-64 zlib bzip2
+    conda install -y -q gfortran_linux-64 gxx_linux-64 zlib bzip2 xz
     export CFLAGS="-I/home/docs/.conda/include ${CFLAGS}"
     export LD_LIBRARY_PATH=/home/docs/.conda/lib:$LD_LIBRARY_PATH
     export LDFLAGS="-L/home/docs/.conda/lib ${LDFLAGS}"
