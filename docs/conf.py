@@ -168,6 +168,7 @@ def generate_doxygen_xml(app):
     """
     commands = """
     export PATH="/home/docs/.conda/bin:$PATH"
+    conda init bash
     conda activate base
     conda install -y -q gfortran_linux-64 gxx_linux-64
     conda activate base
