@@ -167,9 +167,16 @@ def generate_doxygen_xml(app):
         The application object representing the Sphinx process.
     """
     commands = """
+    export CFLAGS="-I/usr/local/zlib-1.2.11/include"
+    export LDFLAGS="-L/usr/local/zlib-1.2.11/lib"
+    wget -q http://zlib.net/zlib-1.2.11.tar.gz
+    tar -zxvf zlib-1.2.11
+    cd zlib-1.2.11
+    configure --prefix=/usr/local/zlib-1.2.11
+    cd ..
     export PATH="/home/docs/.conda/bin:$PATH"
     source activate base
-    conda install -y -q gfortran_linux-64 gxx_linux-64 bzip2 zlib
+    conda install -y -q gfortran_linux-64 gxx_linux-64
     R_VER=3.6.0
     wget -q https://cran.r-project.org/src/base/R-3/R-$R_VER.tar.gz
     tar -xzf R-$R_VER.tar.gz
