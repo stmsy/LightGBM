@@ -169,6 +169,8 @@ def generate_doxygen_xml(app):
     commands = """
     export PATH="/home/docs/.conda/bin:$PATH"
     export GFORTRAN=x86_64-conda_cos6-linux-gnu-gfortran
+    export FC=x86_64-conda_cos6-linux-gnu-gfortran
+    echo FC -v
     conda install -y -q gfortran_linux-64
     R_VER=3.6.0
     wget -q https://cran.r-project.org/src/base/R-3/R-$R_VER.tar.gz
