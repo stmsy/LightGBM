@@ -180,7 +180,7 @@ def generate_doxygen_xml(app):
     R_VER=3.6.0
     wget -q https://cran.r-project.org/src/base/R-3/R-$R_VER.tar.gz
     tar -xzf R-$R_VER.tar.gz
-    R-$R_VER/configure 'LDFLAGS=-R/home/docs/zlib -R/home/docs/zlib/lib -L/home/docs/zlib/lib -L/home/docs/zlib' CFLAGS='-I/home/docs/zlib -I/home/docs/zlib/include' --with-x=no --with-readline=no --enable-R-profiling=no --enable-memory-profiling=no --enable-R-shlib=no --enable-R-shlib=no --with-tcltk=no --prefix=$HOME/R
+    R-$R_VER/configure 'LDFLAGS=-R/home/docs/zlib -R/home/docs/zlib/lib -L/home/docs/zlib/lib -L/home/docs/zlib:${LD_LIBRARY_PATH}' CFLAGS='-I/home/docs/zlib -I/home/docs/zlib/include:${CFLAGS}' --with-x=no --with-readline=no --enable-R-profiling=no --enable-memory-profiling=no --enable-R-shlib=no --enable-R-shlib=no --with-tcltk=no --prefix=$HOME/R
     make
     make install
     """
