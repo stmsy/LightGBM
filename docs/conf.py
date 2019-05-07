@@ -169,7 +169,6 @@ def generate_doxygen_xml(app):
     commands = """
     export PATH="/home/docs/.conda/bin:$PATH"
     export FC=x86_64-conda_cos6-linux-gnu-gfortran
-    export FFLAGS="-I/home/docs/.conda/include"
     conda install -y -q gfortran_linux-64
     /home/docs/.conda/etc/conda/activate.d/activate-gfortran_linux-64.sh
     R_VER=3.6.0
