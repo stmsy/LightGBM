@@ -169,16 +169,10 @@ def generate_doxygen_xml(app):
     commands = """
     export PATH="/home/docs/.conda/bin:$PATH"
     source activate base
-    conda install -y -q gfortran_linux-64 gxx_linux-64
-    wget -q http://zlib.net/zlib-1.2.11.tar.gz
-    tar -zxf zlib-1.2.11.tar.gz
-    zlib-1.2.11/configure --prefix=/home/docs/zlib
-    make
-    make install
-    export PATH=/home/docs/zlib/bin:$PATH
-    export CFLAGS="-I/home/docs/zlib/include ${CFLAGS}"
-    export LD_LIBRARY_PATH=/home/docs/zlib/lib:$LD_LIBRARY_PATH
-    export LDFLAGS="-L/home/docs/zlib/lib ${LDFLAGS}"
+    conda install -y -q gfortran_linux-64 gxx_linux-64 zlib bzip2
+    export CFLAGS="-I/home/docs/.conda/include ${CFLAGS}"
+    export LD_LIBRARY_PATH=/home/docs/.conda/lib:$LD_LIBRARY_PATH
+    export LDFLAGS="-L/home/docs/.conda/lib ${LDFLAGS}"
     R_VER=3.6.0
     wget -q https://cran.r-project.org/src/base/R-3/R-$R_VER.tar.gz
     tar -xzf R-$R_VER.tar.gz
