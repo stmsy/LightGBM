@@ -170,7 +170,7 @@ def generate_doxygen_xml(app):
     export CFLAGS="-I/usr/local/zlib-1.2.11/include"
     export LDFLAGS="-L/usr/local/zlib-1.2.11/lib"
     wget -q http://zlib.net/zlib-1.2.11.tar.gz
-    tar -zxvf zlib-1.2.11
+    tar -zxf zlib-1.2.11.tar.gz
     cd zlib-1.2.11
     configure --prefix=/usr/local/zlib-1.2.11
     cd ..
