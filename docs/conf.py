@@ -167,7 +167,9 @@ def generate_doxygen_xml(app):
         The application object representing the Sphinx process.
     """
     commands = """
+    export PATH=/home/docs/zlib/bin:$PATH
     export CFLAGS="-I/home/docs/zlib/include"
+    export LD_LIBRARY_PATH=/home/docs/zlib/lib:$LD_LIBRARY_PATH
     export LDFLAGS="-L/home/docs/zlib/lib"
     export PATH="/home/docs/.conda/bin:$PATH"
     source activate base
@@ -180,7 +182,7 @@ def generate_doxygen_xml(app):
     R_VER=3.6.0
     wget -q https://cran.r-project.org/src/base/R-3/R-$R_VER.tar.gz
     tar -xzf R-$R_VER.tar.gz
-    R-$R_VER/configure --with-libpth-prefix=/home/docs/zlib --with-x=no --with-readline=no --enable-java=no --enable-R-profiling=no --enable-memory-profiling=no --enable-R-shlib=no --enable-R-shlib=no --with-tcltk=no --prefix=$HOME/R
+    R-$R_VER/configure --with-x=no --with-readline=no --enable-java=no --enable-R-profiling=no --enable-memory-profiling=no --enable-R-shlib=no --enable-R-shlib=no --with-tcltk=no --prefix=$HOME/R
     make
     make install
     """
