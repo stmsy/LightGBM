@@ -176,9 +176,9 @@ def generate_doxygen_xml(app):
     make
     make install
     export PATH=/home/docs/zlib/bin:$PATH
-    export CFLAGS="-I/home/docs/zlib/include"
+    export CFLAGS="-I/home/docs/zlib/include ${CFLAGS}"
     export LD_LIBRARY_PATH=/home/docs/zlib/lib:$LD_LIBRARY_PATH
-    export LDFLAGS="-L/home/docs/zlib/lib"
+    export LDFLAGS="-L/home/docs/zlib/lib ${LDFLAGS}"
     R_VER=3.6.0
     wget -q https://cran.r-project.org/src/base/R-3/R-$R_VER.tar.gz
     tar -xzf R-$R_VER.tar.gz
