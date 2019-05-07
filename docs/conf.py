@@ -167,11 +167,11 @@ def generate_doxygen_xml(app):
         The application object representing the Sphinx process.
     """
     commands = """
-    export CFLAGS="-I/usr/local/zlib-1.2.11/include"
-    export LDFLAGS="-L/usr/local/zlib-1.2.11/lib"
+    export CFLAGS="-I/opt/zlib/include"
+    export LDFLAGS="-L/opt/zlib/lib"
     wget -q http://zlib.net/zlib-1.2.11.tar.gz
     tar -zxf zlib-1.2.11.tar.gz
-    zlib-1.2.11/configure --prefix=/usr/local/zlib-1.2.11
+    zlib-1.2.11/configure --prefix=/opt/zlib
     make
     make install
     export PATH="/home/docs/.conda/bin:$PATH"
