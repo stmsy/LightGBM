@@ -170,16 +170,19 @@ def generate_doxygen_xml(app):
     export PATH="/home/docs/.conda/bin:$PATH"
     source activate base
     conda install -y -q gfortran_linux-64 gxx_linux-64 zlib bzip2 xz pcre libcurl
-    export CFLAGS="-I/home/docs/.conda/include ${CFLAGS}"
-    export CPPFLAGS="-I/home/docs/.conda/include ${CPPFLAGS}"
-    export LD_LIBRARY_PATH=/home/docs/.conda/lib:$LD_LIBRARY_PATH
-    export LDFLAGS="-L/home/docs/.conda/lib ${LDFLAGS}"
+    export CFLAGS="-I$CONDA_PREFIX/include ${CFLAGS}"
+    export CPPFLAGS="-I$CONDA_PREFIX/include ${CPPFLAGS}"
+    export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
+    export LDFLAGS="-L$CONDA_PREFIX/lib ${LDFLAGS}"
     R_VER=3.6.0
     wget -q https://cran.r-project.org/src/base/R-3/R-$R_VER.tar.gz
     tar -xzf R-$R_VER.tar.gz
     R-$R_VER/configure --without-x --without-readline --disable-java --disable-R-profiling --disable-memory-profiling --disable-R-shlib --disable-R-shlib --without-tcltk --without-recommended-packages --prefix=$HOME/R
     make -j4
     make install
+    echo "R_LIBS=$HOME/R_LIBS" > $HOME/.Renviron
+    echo 'options(repos = "https://cran.rstudio.com")' > $HOME/.Rprofile
+    Rscript -e 'install.packages(c("devtools", "pkgdown"), dependencies = TRUE)'
     """
     try:
         # Warning! The following code can cause buffer overflows on RTD.
