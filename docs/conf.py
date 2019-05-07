@@ -173,7 +173,8 @@ def generate_doxygen_xml(app):
     echo "R_LIBS=$HOME/R_LIBS" > $HOME/.Renviron
     echo 'options(repos = "https://cran.rstudio.com")' > $HOME/.Rprofile
     Rscript -e 'install.packages("pkgdown", dependencies = TRUE)'
-    Rscript /home/docs/checkouts/readthedocs.org/user_builds/lightgbm/checkouts/docs/build_r.R
+    cd /home/docs/checkouts/readthedocs.org/user_builds/lightgbm/checkouts/docs
+    Rscript build_r.R
     """
     try:
         # Warning! The following code can cause buffer overflows on RTD.
