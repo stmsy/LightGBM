@@ -173,7 +173,7 @@ def generate_doxygen_xml(app):
     R_VER=3.6.0
     wget -q https://cran.r-project.org/src/base/R-3/R-$R_VER.tar.gz
     tar -xzf R-$R_VER.tar.gz
-    R-$R_VER/configure --enable-R-shlib --prefix=$HOME/R
+    R-$R_VER/configure --with-x=no --with-readline=no --enable-R-profiling=no --enable-memory-profiling=no --enable-R-shlib=no --enable-R-shlib --prefix=$HOME/R
     make
     make install
     """
@@ -184,7 +184,7 @@ def generate_doxygen_xml(app):
         # /blob/fe7644829057af622e467bb529db6c03a830da99/exhale/deploy.py#L99-L111
         process = Popen(['/bin/bash'],
                         stdin=PIPE, stdout=PIPE, stderr=PIPE,
-                        universal_newlines=True, shell=True)
+                        universal_newlines=True)
         stdout, stderr = process.communicate(commands)
         output = '\n'.join([i for i in (stdout, stderr) if i is not None])
         if process.returncode != 0:
