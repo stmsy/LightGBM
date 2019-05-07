@@ -168,16 +168,17 @@ def generate_doxygen_xml(app):
     """
     commands = """
     export PATH="/home/docs/.conda/bin:$PATH"
-    export GFORTRAN=x86_64-conda_cos6-linux-gnu-gfortran
     export FC=x86_64-conda_cos6-linux-gnu-gfortran
-    echo FC -v
+    export FFLAGS="-I/home/docs/.conda/include"
     conda install -y -q gfortran_linux-64
+    echo FC -v
     R_VER=3.6.0
     wget -q https://cran.r-project.org/src/base/R-3/R-$R_VER.tar.gz
     tar -xzf R-$R_VER.tar.gz
     R-$R_VER/configure --enable-R-shlib --prefix=$HOME/R
     make
     make install
+    cat config.log
     """
     try:
         # Warning! The following code can cause buffer overflows on RTD.
