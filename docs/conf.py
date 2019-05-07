@@ -170,6 +170,7 @@ def generate_doxygen_xml(app):
     export PATH="/home/docs/.conda/bin:$PATH"
     source activate base
     conda install -y -q gfortran_linux-64 gxx_linux-64 zlib
+    source activate base
     R_VER=3.6.0
     wget -q https://cran.r-project.org/src/base/R-3/R-$R_VER.tar.gz
     tar -xzf R-$R_VER.tar.gz
