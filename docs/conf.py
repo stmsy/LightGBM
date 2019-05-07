@@ -168,12 +168,12 @@ def generate_doxygen_xml(app):
     """
     commands = """
     export PATH="/home/docs/.conda/bin:$PATH"
-    source activate base
-    conda install -y -q r-essentials r-base r-devtools
+    conda create -q -y -n r_env r-essentials r-base r-devtools
+    source activate r_env
     echo "R_LIBS=$HOME/R_LIBS" > $HOME/.Renviron
     echo 'options(repos = "https://cran.rstudio.com")' > $HOME/.Rprofile
     Rscript -e 'install.packages("pkgdown", dependencies = TRUE)'
-    Rscript build_r.R
+    Rscript /home/docs/checkouts/readthedocs.org/user_builds/lightgbm/checkouts/docs/build_r.R
     """
     try:
         # Warning! The following code can cause buffer overflows on RTD.
