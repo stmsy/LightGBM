@@ -180,6 +180,7 @@ def generate_doxygen_xml(app):
     R-$R_VER/configure --without-x --without-readline --disable-java --disable-R-profiling --disable-memory-profiling --disable-R-shlib --disable-R-shlib --without-tcltk --without-recommended-packages --prefix=$HOME/R
     make -j4
     make install
+    export PATH="$HOME/R/bin:$PATH"
     echo "R_LIBS=$HOME/R_LIBS" > $HOME/.Renviron
     echo 'options(repos = "https://cran.rstudio.com")' > $HOME/.Rprofile
     Rscript -e 'install.packages(c("devtools", "pkgdown"), dependencies = TRUE)'
