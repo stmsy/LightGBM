@@ -171,6 +171,7 @@ def generate_doxygen_xml(app):
     export PATH="/home/docs/.conda/bin:$PATH"
     conda create -q -y -n r_env r-essentials r-base r-devtools cmake
     source activate r_env
+    export TAR=/bin/tar
     echo "R_LIBS=$HOME/R_LIBS" > $HOME/.Renviron
     echo 'options(repos = "https://cran.rstudio.com")' > $HOME/.Rprofile
     Rscript -e 'install.packages("pkgdown", dependencies = TRUE)'
