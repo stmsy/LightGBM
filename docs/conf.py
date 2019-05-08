@@ -176,6 +176,8 @@ def generate_doxygen_xml(app):
     Rscript -e 'install.packages("pkgdown", dependencies = TRUE)'
     cd /home/docs/checkouts/readthedocs.org/user_builds/lightgbm/checkouts/docs
     Rscript build_r.R
+    Rscript -e "remove.packages('pkgload')"
+    Rscript -e 'devtools::install_github("r-lib/pkgload")'
     Rscript pkgdown/build-site.R
     """
     try:
