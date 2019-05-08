@@ -176,8 +176,8 @@ def generate_doxygen_xml(app):
     Rscript -e 'install.packages("pkgdown", dependencies = TRUE)'
     cd /home/docs/checkouts/readthedocs.org/user_builds/lightgbm/checkouts/docs
     Rscript build_r.R
-    Rscript ./pkgdown/build-site.R
     """
+#    Rscript ./pkgdown/build-site.R
     try:
         # Warning! The following code can cause buffer overflows on RTD.
         # Consider suppressing output completely if RTD project silently fails.
@@ -209,4 +209,4 @@ def setup(app):
     else:
         app.add_directive('doxygenfile', IgnoredDirective)
     app.add_javascript("js/script.js")
-    app.connect("build-finished", lambda app, exception: copy_tree(app.confdir + '/../pkgdown/docs', app.outdir + '/R', verbose=0))
+#    app.connect("build-finished", lambda app, exception: copy_tree(app.confdir + '/../pkgdown/docs', app.outdir + '/R', verbose=0))
