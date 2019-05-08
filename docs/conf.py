@@ -176,9 +176,8 @@ def generate_doxygen_xml(app):
     echo 'options(repos = "https://cran.rstudio.com")' > $HOME/.Rprofile
     Rscript -e 'install.packages("pkgdown", dependencies = TRUE)'
     cd /home/docs/checkouts/readthedocs.org/user_builds/lightgbm/checkouts/docs
-    Rscript build_r.R
-    Rscript -e "remove.packages('roxygen2')"
     Rscript -e "devtools::install_version('roxygen2', version = '6.0.1')"
+    Rscript -e "sessionInfo()"
     Rscript pkgdown/build-site.R
     """
     try:
