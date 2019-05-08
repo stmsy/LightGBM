@@ -169,6 +169,7 @@ def generate_doxygen_xml(app):
     """
     commands = """
     export PATH="/home/docs/.conda/bin:$PATH"
+    ln -s /bin/tar /bin/gtar
     conda create -q -y -n r_env r-essentials r-base r-devtools cmake
     source activate r_env
     echo "R_LIBS=$HOME/R_LIBS" > $HOME/.Renviron
