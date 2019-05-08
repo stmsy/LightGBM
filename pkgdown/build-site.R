@@ -1,5 +1,6 @@
 print("========================in build-site.R====================================")
 setwd("/home/docs/checkouts/readthedocs.org/user_builds/lightgbm/checkouts/docs/R-package")
+pkgbuild::compile_dll()
 devtools::document()
 
 if (!dir.exists("./docs")) {
