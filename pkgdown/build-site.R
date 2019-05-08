@@ -1,6 +1,5 @@
 print("========================in build-site.R====================================")
 setwd("/home/docs/checkouts/readthedocs.org/user_builds/lightgbm/checkouts/docs/R-package")
-devtools::load_all()
 devtools::document()
 
 if (!dir.exists("./docs")) {
