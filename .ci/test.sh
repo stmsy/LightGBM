@@ -72,8 +72,8 @@ if [[ $OS_NAME == "macos" ]] && [[ $COMPILER == "clang" ]]; then
     sudo ln -sf `ls -d "$(brew --cellar libomp)"/*/lib`/* $CONDA_PREFIX/lib || exit -1  # fix "OMP: Error #15: Initializing libiomp5.dylib, but found libomp.dylib already initialized." (OpenMP library conflict due to conda's MKL)
 fi
 
-sudo find / -name "lib*omp*.dylib"
-sudo find / -name "lib*omp*.so"
+sudo find $CONDA_PREFIX -name "lib*omp*.dylib"
+sudo find $CONDA_PREFIX -name "lib*omp*.so"
 
 if [[ $TASK == "sdist" ]]; then
     cd $BUILD_DIRECTORY/python-package && python setup.py sdist || exit -1
