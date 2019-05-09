@@ -18,6 +18,10 @@ else
     CMAKE_OPTS=()
 fi
 
+find | grep lib*omp*.dylib
+echo "------------"
+locate lib*omp*.dylib
+
 conda create -q -y -n $CONDA_ENV python=$PYTHON_VERSION
 source activate $CONDA_ENV
 
@@ -67,7 +71,7 @@ if [[ $TASK == "if-else" ]]; then
 fi
 
 conda install -q -y -n $CONDA_ENV matplotlib numpy pandas psutil pytest python-graphviz scikit-learn scipy
-conda install -q -y -n $CONDA_ENV nomkl
+
 if [[ $OS_NAME == "macos" ]] && [[ $COMPILER == "clang" ]]; then
     sudo ln -sf `ls -d "$(brew --cellar libomp)"/*/lib`/* $CONDA_PREFIX/lib || exit -1  # fix "OMP: Error #15: Initializing libiomp5.dylib, but found libomp.dylib already initialized." (OpenMP library conflict due to conda's MKL)
 fi
