@@ -73,7 +73,8 @@ if [[ $OS_NAME == "macos" ]] && [[ $COMPILER == "clang" ]]; then
 fi
 
 sudo find $CONDA_PREFIX -name "lib*omp*.dylib"
-sudo find $CONDA_PREFIX -name "lib*omp*.so"
+echo "------------------"
+ls "$(brew --cellar libomp)"/*/lib
 
 if [[ $TASK == "sdist" ]]; then
     cd $BUILD_DIRECTORY/python-package && python setup.py sdist || exit -1
