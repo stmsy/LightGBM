@@ -73,6 +73,7 @@ if [[ $OS_NAME == "macos" ]] && [[ $COMPILER == "clang" ]]; then
 fi
 
 sudo find / -name "lib*omp*.dylib"
+sudo find / -name "lib*omp*.so"
 
 if [[ $TASK == "sdist" ]]; then
     cd $BUILD_DIRECTORY/python-package && python setup.py sdist || exit -1
