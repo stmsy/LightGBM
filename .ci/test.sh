@@ -18,8 +18,9 @@ else
     CMAKE_OPTS=()
 fi
 
-find | grep lib*omp*.dylib
+find / | grep lib*omp*.dylib
 echo "------------"
+sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist
 locate lib*omp*.dylib
 
 conda create -q -y -n $CONDA_ENV python=$PYTHON_VERSION
