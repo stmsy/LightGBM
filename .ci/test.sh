@@ -69,12 +69,9 @@ fi
 conda install -q -y -n $CONDA_ENV matplotlib numpy pandas psutil pytest python-graphviz scikit-learn scipy
 
 if [[ $OS_NAME == "macos" ]] && [[ $COMPILER == "clang" ]]; then
-    sudo ln -sf `ls -d "$(brew --cellar libomp)"/*/lib`/* $CONDA_PREFIX/lib || exit -1  # fix "OMP: Error #15: Initializing libiomp5.dylib, but found libomp.dylib already initialized." (OpenMP library conflict due to conda's MKL)
+    # fix "OMP: Error #15: Initializing libiomp5.dylib, but found libomp.dylib already initialized." (OpenMP library conflict due to conda's MKL)
+    for LIBOMP_ALIAS in (libgomp.dylib libiomp5.dylib libomp.dylib); do sudo ln -sf "$(brew --cellar libomp)"/*/lib/libomp.dylib $CONDA_PREFIX/lib/$LIBOMP_ALIAS || exit -1; done
 fi
-
-sudo find $CONDA_PREFIX -name "lib*omp*.dylib"
-echo "------------------"
-ls "$(brew --cellar libomp)"/*/lib
 
 if [[ $TASK == "sdist" ]]; then
     cd $BUILD_DIRECTORY/python-package && python setup.py sdist || exit -1
